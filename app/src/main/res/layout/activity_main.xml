@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Farinha Muito Viadinho"
-        android:id="@+id/textView"
+        android:id="@+id/txtNoPokemon"
         android:textSize="50dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
@@ -22,5 +22,26 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        android:id="@+id/btnBuscar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:onClick="buscar"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/txtNoPokemon"
+        android:minHeight="1000dp"
+        android:minWidth="1000dp" />
 
 </RelativeLayout>
