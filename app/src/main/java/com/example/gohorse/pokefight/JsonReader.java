@@ -22,14 +22,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
 /**
  * Created by Bruno on 26/05/2015.
+ * Recebe e le um arquivo Json.
  */
-public class Json extends AsyncTask<String, Void, String> {
+
+public class JsonReader extends AsyncTask<String, Void, String> {
 
     private Context context;
 
-    public Json(Context context){
+    public JsonReader(Context context) {
         this.context = context;
     }
 
