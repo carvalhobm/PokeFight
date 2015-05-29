@@ -7,10 +7,10 @@ import java.util.Map;
  * Created by Bruno on 28/05/2015.
  */
 
-public class Description {
+public class Game {
 
     private String name;
-    private String resource_uri;
+    private String resourceUri;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
@@ -31,18 +31,13 @@ public class Description {
         this.name = name;
     }
 
-    public Description withName(String name) {
-        this.name = name;
-        return this;
-    }
-
     /**
      *
      * @return
      * The resourceUri
      */
     public String getResourceUri() {
-        return resource_uri;
+        return resourceUri;
     }
 
     /**
@@ -51,12 +46,7 @@ public class Description {
      * The resource_uri
      */
     public void setResourceUri(String resourceUri) {
-        this.resource_uri = resourceUri;
-    }
-
-    public Description withResourceUri(String resourceUri) {
-        this.resource_uri = resourceUri;
-        return this;
+        this.resourceUri = resourceUri;
     }
 
     public Map<String, Object> getAdditionalProperties() {
@@ -65,11 +55,6 @@ public class Description {
 
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
-    }
-
-    public Description withAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-        return this;
     }
 
 }

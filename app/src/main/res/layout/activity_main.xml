@@ -3,22 +3,26 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#ffffff"
+    android:id="@+id/activity_main">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Farinha Muito Viadinho"
         android:id="@+id/txtNoPokemon"
         android:textSize="50dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/btnBuscar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:minWidth="400dp"
+        android:maxWidth="400dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="goHorse Inc."
-        android:id="@+id/textView2"
+        android:text="@string/logo"
+        android:id="@+id/txtLogo"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -29,28 +33,213 @@
         android:text="Buscar"
         android:id="@+id/btnBuscar"
         android:onClick="buscar"
-        android:layout_above="@+id/txtNoPokemon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="53dp" />
+        android:layout_alignTop="@+id/editText"
+        android:layout_toLeftOf="@+id/btnRandom"
+        android:layout_toStartOf="@+id/btnRandom" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/txtNoPokemon"
-        android:minHeight="1000dp"
-        android:minWidth="1000dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:minHeight="100dp"
+        android:minWidth="100dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_above="@+id/btnBuscar"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/btnBuscar"
+        android:layout_toStartOf="@+id/btnBuscar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descrição"
+        android:id="@+id/lblDescricao"
+        android:layout_below="@+id/txtNoPokemon"
+        android:textSize="20dp"
         android:layout_alignRight="@+id/txtNoPokemon"
-        android:layout_alignEnd="@+id/txtNoPokemon" />
+        android:layout_alignEnd="@+id/txtNoPokemon"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewDescricao"
+        android:layout_below="@+id/lblDescricao"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignRight="@+id/lblDescricao"
+        android:layout_alignEnd="@+id/lblDescricao"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hp: "
+        android:id="@+id/lblHp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewHp"
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/lblDefesa"
+        android:layout_alignBottom="@+id/lblHp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ataque: "
+        android:id="@+id/lblAtaque"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_below="@+id/lblHp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewAtaque"
+        android:textSize="20dp"
+        android:layout_below="@+id/txtViewHp"
+        android:layout_alignLeft="@+id/txtViewHp"
+        android:layout_alignStart="@+id/txtViewHp"
+        android:layout_toRightOf="@+id/lblDefesa" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Defesa: "
+        android:id="@+id/lblDefesa"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_below="@+id/lblAtaque"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewDefesa"
+        android:textSize="20dp"
+        android:layout_below="@+id/lblAtaque"
+        android:layout_toRightOf="@+id/lblDefesa"
+        android:layout_toEndOf="@+id/lblDefesa" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sp Atq: "
+        android:id="@+id/lblSpAtk"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_below="@+id/lblDefesa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewSpAtaque"
+        android:textSize="20dp"
+        android:layout_below="@+id/lblDefesa"
+        android:layout_toRightOf="@+id/lblDefesa"
+        android:layout_toEndOf="@+id/lblSpAtk" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sp Def: "
+        android:id="@+id/lblSpDefesa"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_below="@+id/lblSpAtk"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewSpDefesa"
+        android:textSize="20dp"
+        android:layout_below="@+id/txtViewSpAtaque"
+        android:layout_toRightOf="@+id/lblDefesa"
+        android:layout_alignRight="@+id/txtViewVelocidade"
+        android:layout_alignEnd="@+id/txtViewVelocidade" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed: "
+        android:id="@+id/lblVelocidade"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_below="@+id/lblSpDefesa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewVelocidade"
+        android:textSize="20dp"
+        android:layout_below="@+id/txtViewSpDefesa"
+        android:layout_toRightOf="@+id/lblDefesa"
+        android:layout_toEndOf="@+id/lblAtaque" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peso: "
+        android:id="@+id/lblPeso"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_below="@+id/lblVelocidade"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewPeso"
+        android:textSize="20dp"
+        android:layout_alignTop="@+id/lblPeso"
+        android:layout_toRightOf="@+id/lblDefesa"
+        android:layout_toEndOf="@+id/lblAtaque" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aleatório"
+        android:id="@+id/btnRandom"
+        android:onClick="random"
+        android:layout_above="@+id/txtNoPokemon"
+        android:layout_alignRight="@+id/lblDescricao"
+        android:layout_alignEnd="@+id/lblDescricao" />
 
 </RelativeLayout>

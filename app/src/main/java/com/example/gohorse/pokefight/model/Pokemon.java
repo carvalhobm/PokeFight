@@ -33,8 +33,8 @@ public class Pokemon {
     private Integer nationalId;
     private Integer pkdxId;
     private String resourceUri;
-    private Integer spAtk;
-    private Integer spDef;
+    private Integer sp_atk;
+    private Integer sp_def;
     private String species;
     private Integer speed;
     private List<Sprite> sprites = new ArrayList<Sprite>();
@@ -555,7 +555,7 @@ public class Pokemon {
      * The spAtk
      */
     public Integer getSpAtk() {
-        return spAtk;
+        return sp_atk;
     }
 
     /**
@@ -564,34 +564,34 @@ public class Pokemon {
      * The sp_atk
      */
     public void setSpAtk(Integer spAtk) {
-        this.spAtk = spAtk;
+        this.sp_atk = spAtk;
     }
 
     public Pokemon withSpAtk(Integer spAtk) {
-        this.spAtk = spAtk;
+        this.sp_atk = spAtk;
         return this;
     }
 
     /**
      *
      * @return
-     * The spDef
+     * The sp_def
      */
-    public Integer getSpDef() {
-        return spDef;
+    public Integer getSp_def() {
+        return sp_def;
     }
 
     /**
      *
-     * @param spDef
+     * @param sp_def
      * The sp_def
      */
-    public void setSpDef(Integer spDef) {
-        this.spDef = spDef;
+    public void setSp_def(Integer sp_def) {
+        this.sp_def = sp_def;
     }
 
     public Pokemon withSpDef(Integer spDef) {
-        this.spDef = spDef;
+        this.sp_def = spDef;
         return this;
     }
 
