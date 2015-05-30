@@ -112,6 +112,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void failure(RetrofitError error) {
                 txtView.setText("ERRO!!");
+                setLabelsInvisible();
             }
         });
 
@@ -121,9 +122,8 @@ public class MainActivity extends ActionBarActivity {
     public void random(View view) {
         this.context = this;
 
-        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
         Random rand = new Random();
-        Integer index = rand.nextInt(600) + 1;
+        Integer index = rand.nextInt(718) + 1;
 
         final TextView txtView = (TextView) findViewById(R.id.txtNoPokemon);
         final TextView txtViewHp = (TextView) findViewById(R.id.txtViewHp);
@@ -161,6 +161,9 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void failure(RetrofitError error) {
                 txtView.setText("ERRO!!");
+                setLabelsInvisible();
+
+
             }
         });
 
@@ -211,6 +214,7 @@ public class MainActivity extends ActionBarActivity {
         final TextView lblSpAtk = (TextView) findViewById(R.id.lblSpAtk);
         final TextView lblSpDefesa = (TextView) findViewById(R.id.lblSpDefesa);
         final TextView lblVelocidade = (TextView) findViewById(R.id.lblVelocidade);
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
         lblAtaque.setVisibility(View.VISIBLE);
         lblDefesa.setVisibility(View.VISIBLE);
@@ -220,7 +224,49 @@ public class MainActivity extends ActionBarActivity {
         lblSpAtk.setVisibility(View.VISIBLE);
         lblSpDefesa.setVisibility(View.VISIBLE);
         lblVelocidade.setVisibility(View.VISIBLE);
+        imageView.setVisibility(View.VISIBLE);
 
+    }
+
+    public void setLabelsInvisible(){
+
+        final TextView lblDescricao = (TextView) findViewById(R.id.lblDescricao);
+        final TextView lblHp = (TextView) findViewById(R.id.lblHp);
+        final TextView lblAtaque = (TextView) findViewById(R.id.lblAtaque);
+        final TextView lblDefesa = (TextView) findViewById(R.id.lblDefesa);
+        final TextView lblPeso = (TextView) findViewById(R.id.lblPeso);
+        final TextView lblSpAtk = (TextView) findViewById(R.id.lblSpAtk);
+        final TextView lblSpDefesa = (TextView) findViewById(R.id.lblSpDefesa);
+        final TextView lblVelocidade = (TextView) findViewById(R.id.lblVelocidade);
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+
+        final TextView txtViewDescricao = (TextView) findViewById(R.id.txtViewDescricao);
+        final TextView txtViewHp = (TextView) findViewById(R.id.txtViewHp);
+        final TextView txtViewAtaque = (TextView) findViewById(R.id.txtViewAtaque);
+        final TextView txtViewDefesa = (TextView) findViewById(R.id.txtViewDefesa);
+        final TextView txtViewPeso = (TextView) findViewById(R.id.txtViewPeso);
+        final TextView txtViewSpAtk = (TextView) findViewById(R.id.txtViewSpAtaque);
+        final TextView txtViewSpDefesa = (TextView) findViewById(R.id.txtViewSpDefesa);
+        final TextView txtViewVelocidade = (TextView) findViewById(R.id.txtViewVelocidade);
+
+        lblAtaque.setVisibility(View.INVISIBLE);
+        lblDefesa.setVisibility(View.INVISIBLE);
+        lblDescricao.setVisibility(View.INVISIBLE);
+        lblHp.setVisibility(View.INVISIBLE);
+        lblPeso.setVisibility(View.INVISIBLE);
+        lblSpAtk.setVisibility(View.INVISIBLE);
+        lblSpDefesa.setVisibility(View.INVISIBLE);
+        lblVelocidade.setVisibility(View.INVISIBLE);
+        imageView.setVisibility(View.INVISIBLE);
+
+        txtViewDescricao.setText("");
+        txtViewHp.setText("");
+        txtViewAtaque.setText("");
+        txtViewDefesa.setText("");
+        txtViewPeso.setText("");
+        txtViewSpAtk.setText("");
+        txtViewSpDefesa.setText("");
+        txtViewVelocidade.setText("");
     }
 
 }

@@ -5,9 +5,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.gohorse.pokefight.R;
 
@@ -16,6 +19,7 @@ public class HomeActivity extends ActionBarActivity {
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
     Toolbar toolbar;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +27,29 @@ public class HomeActivity extends ActionBarActivity {
         setContentView(R.layout.home_activity);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        btn = (Button) findViewById(R.id.btnBuscarMenuLateral);
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAGTESTE", "onCLick");
+                Toast.makeText(v.getContext(), "TESTE", Toast.LENGTH_LONG);
+            }
+        });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
+            @Override
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             /** Called when a drawer has settled in a completely open state. */
+            @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
@@ -77,4 +92,5 @@ public class HomeActivity extends ActionBarActivity {
 
         mDrawerToggle.syncState();
     }
+
 }
