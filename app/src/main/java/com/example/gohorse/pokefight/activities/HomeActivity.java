@@ -1,25 +1,42 @@
 package com.example.gohorse.pokefight.activities;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.example.gohorse.pokefight.R;
+import com.example.gohorse.pokefight.fragments.BuscarFragment;
 
 public class HomeActivity extends ActionBarActivity {
 
-    DrawerLayout mDrawerLayout;
+//----Layouts---------------------------------------------------------------------------------------
+    public static RelativeLayout relativeLayoutToolbar;
+    public DrawerLayout mDrawerLayout;
+//--------------------------------------------------------------------------------------------------
+
     ActionBarDrawerToggle mDrawerToggle;
     Toolbar toolbar;
-    Button btn;
+    Button btnJogar;
+    Button btnBuscar;
+    Button btnConfiguracoes;
+    Button btnSair;
+    public static EditText editTextToolbar;
+
+//----Fragments-------------------------------------------------------------------------------------
+    BuscarFragment buscarFragment = new BuscarFragment();
+
+    FragmentTransaction fragmentTransaction;
+
+//--------------------------------------------------------------------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +44,12 @@ public class HomeActivity extends ActionBarActivity {
         setContentView(R.layout.home_activity);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        btn = (Button) findViewById(R.id.btnBuscarMenuLateral);
-        btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                Log.d("TAGTESTE", "onCLick");
-                Toast.makeText(v.getContext(), "TESTE", Toast.LENGTH_LONG);
-            }
-        });
-
+        btnBuscar = (Button) findViewById(R.id.btnBuscarMenuLateral);
+        btnSair = (Button) findViewById(R.id.btnSair);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        relativeLayoutToolbar = (RelativeLayout) findViewById(R.id.relativeLayoutToolbar);
+        editTextToolbar = (EditText) findViewById(R.id.editTextToolbar);
+
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.drawer_open, R.string.drawer_close) {
 
@@ -58,6 +70,24 @@ public class HomeActivity extends ActionBarActivity {
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getTelaBuscar();
+                mDrawerLayout.closeDrawers();
+            }
+        });
+
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sair();
+            }
+        });
     }
 
     @Override
@@ -93,4 +123,15 @@ public class HomeActivity extends ActionBarActivity {
         mDrawerToggle.syncState();
     }
 
+    public void getTelaBuscar(){
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.replace(R.id.frameLayout, buscarFragment, "buscar");
+        fragmentTransaction.commit();
+    }
+
+    public void sair(){
+        finish();
+        System.exit(0);
+    }
 }

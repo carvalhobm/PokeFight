@@ -7,4 +7,6 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="logo">goHorse Inc.</string>
+    <string name="buscar">buscar</string>
+    <string name="title_activity_pre_jogo_fragment">PreJogoFragment</string>
 </resources>

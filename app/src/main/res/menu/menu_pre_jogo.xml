@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.gohorse.pokefight.activities.HomeActivity">
+    tools:context="com.example.gohorse.pokefight.fragments.PreJogoFragment">
 
 </menu>

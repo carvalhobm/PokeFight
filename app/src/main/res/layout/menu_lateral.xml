@@ -8,21 +8,47 @@
     >
 
     <Button
-        android:id="@+id/btnBuscarMenuLateral"
+        android:id="@+id/btnJogarMenuLateral"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="Buscar"
-        android:textSize="20dp"
+        android:layout_height="50dp"
+        android:text="jogar"
+        android:textSize="15dp"
         android:background="@color/primary_material_light"
-        android:clickable="true"/>
+        android:layout_margin="1dp"
+        android:clickable="true"
+        />
 
     <Button
-            android:id="@+id/btnDeckMenuLateral"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:text="Buscar"
-            android:textSize="20dp"
-            android:background="@color/primary_material_light"
-            android:clickable="true"/>
+        android:id="@+id/btnBuscarMenuLateral"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Buscar"
+        android:textSize="15dp"
+        android:background="@color/primary_material_light"
+        android:clickable="true"
+        android:layout_margin="1dp"
+        />
+
+    <Button
+        android:id="@+id/btnConfiguracoesMenuLateral"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Configurações"
+        android:textSize="15dp"
+        android:background="@color/primary_material_light"
+        android:clickable="true"
+        android:layout_margin="1dp"
+        />
+    
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Get Out!"
+        android:textSize="15dp"
+        android:background="@color/primary_material_light"
+        android:clickable="true"
+        android:layout_margin="1dp"
+        />
 
 </LinearLayout>

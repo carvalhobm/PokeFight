@@ -8,8 +8,31 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ff0807"
-        />
+        android:background="#f44336"
+        >
+        <RelativeLayout
+            android:id="@+id/relativeLayoutToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:weightSum="1"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/editTextToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_weight="0.15"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="69dp"
+                android:layout_marginEnd="69dp"
+                android:maxLines="1"
+                />
+        </RelativeLayout>
+
+
+        </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -21,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <!--<include layout="@layout/buscar_layout" />-->
         <include layout="@layout/menu_lateral" />
 
     </android.support.v4.widget.DrawerLayout>
