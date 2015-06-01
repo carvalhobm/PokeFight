@@ -1,5 +1,6 @@
 package com.example.gohorse.pokefight.fragments;
 
+
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,18 +31,18 @@ import retrofit.RetrofitError;
 
 public class PreJogoFragment extends Fragment {
     //----GeraçoesPokemon-------------------------------------------------------------------------------
-    private Integer minGen1 = 0;
-    private Integer maxGen1 = 150;
-    private Integer minGen2 = 151;
-    private Integer maxGen2 = 300;
-    private Integer minGen3;
-    private Integer maxGen3;
-    private Integer minGen4;
-    private Integer maxGen4;
-    private Integer minGen5;
-    private Integer maxGen5;
-    private Integer minGen6;
-    private Integer maxGen6;
+    private Integer minGen1 = 1;
+    private Integer maxGen1 = 151;
+    private Integer minGen2 = 152;
+    private Integer maxGen2 = 251;
+    private Integer minGen3 = 252;
+    private Integer maxGen3 = 386;
+    private Integer minGen4 = 387;
+    private Integer maxGen4 = 493;
+    private Integer minGen5 = 494;
+    private Integer maxGen5 = 649;
+    private Integer minGen6 = 650;
+    private Integer maxGen6 = 718;
 //----FimGeraçõesPokemon----------------------------------------------------------------------------
 
     //----RetrofitUtils---------------------------------------------------------------------------------
