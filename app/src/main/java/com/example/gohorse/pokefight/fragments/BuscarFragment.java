@@ -64,6 +64,7 @@ public class BuscarFragment extends Fragment {
 
 //--------------------------------------------------------------------------------------------------
 
+    private InputMethodManager imm;
     public static final String BASE_URL = "http://pokeapi.co";
     private Context context;
 
@@ -77,11 +78,14 @@ public class BuscarFragment extends Fragment {
     View view;
     RelativeLayout relativeLayoutToolbar;
 
+//--------------------------------------------------------------------------------------------------
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.buscar_layout, container, false);
         context = getActivity().getApplicationContext();
+        imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
 
         setHasOptionsMenu(true);
         return view;
@@ -94,19 +98,29 @@ public class BuscarFragment extends Fragment {
         HomeActivity.relativeLayoutToolbar.setVisibility(View.VISIBLE);
         super.onCreateOptionsMenu(menu, inflater);
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         int id = menuItem.getItemId();
 
         if( id == R.id.itemBuscar && HomeActivity.relativeLayoutToolbar.getVisibility() == View.GONE) {
+            imm.showSoftInput(view, 1);
+            HomeActivity.editTextToolbar.setFocusable(true);
+
             HomeActivity.relativeLayoutToolbar.setVisibility(View.VISIBLE);
-        } else if (id == R.id.itemBuscar && HomeActivity.relativeLayoutToolbar.getVisibility() == View.VISIBLE){
+
+        } else if (id == R.id.itemBuscar && HomeActivity.relativeLayoutToolbar.getVisibility() == View.VISIBLE
+                && !HomeActivity.editTextToolbar.getText().toString().equals("")){
+            imm.hideSoftInputFromWindow(HomeActivity.editTextToolbar.getWindowToken(), 0);
+
             String pokemon = HomeActivity.editTextToolbar.getText().toString();
             buscarPokemon(pokemon);
 
             HomeActivity.editTextToolbar.setText("");
+            HomeActivity.relativeLayoutToolbar.setVisibility(View.GONE);
 
+        } else {
+            imm.hideSoftInputFromWindow(HomeActivity.editTextToolbar.getWindowToken(), 0);
             HomeActivity.relativeLayoutToolbar.setVisibility(View.GONE);
         }
         return true;
@@ -148,18 +162,19 @@ public class BuscarFragment extends Fragment {
                 txtViewSpDefesa.setText(pokemon.getSp_def().toString());
                 txtViewVelocidade.setText(pokemon.getSpeed().toString());
 
-                InputMethodManager imm = (InputMethodManager) context.getSystemService(
-                        Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(HomeActivity.editTextToolbar.getWindowToken(), 0);
             }
 
             @Override
             public void failure(RetrofitError error) {
-                if (error.getMessage().equals("404 NOT FOUND")) {
-                    txtView.setText("Pokemon nao encontrado!");
-                } else if (error.getMessage().contains("Cannot resolve Host")) {
-                    txtView.setText("Erro de rede!");
-                }
+//                if (error.getMessage().equals("404 NOT FOUND")) {
+//                    txtView.setText("Pokemon nao encontrado!");
+//                } else if (error.getMessage().contains("Unable to resolve host")){
+//                    txtView.setText("Erro de rede!");
+//                } else{
+//                    txtView.setText(error.getMessage().toString());
+//                }
+                txtView.setText(error.getMessage().toString());
                 setLabelsInvisible();
             }
         });

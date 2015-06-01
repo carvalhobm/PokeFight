@@ -29,7 +29,7 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 
 public class PreJogoFragment extends Fragment {
-    //----GeraçoesPokemon-------------------------------------------------------------------------------
+    //----GeracoesPokemon-------------------------------------------------------------------------------
     private Integer minGen1 = 0;
     private Integer maxGen1 = 150;
     private Integer minGen2 = 151;
@@ -42,7 +42,7 @@ public class PreJogoFragment extends Fragment {
     private Integer maxGen5;
     private Integer minGen6;
     private Integer maxGen6;
-//----FimGeraçõesPokemon----------------------------------------------------------------------------
+//----FimGeracoesPokemon----------------------------------------------------------------------------
 
     //----RetrofitUtils---------------------------------------------------------------------------------
     public static final String BASE_URL = "http://pokeapi.co";

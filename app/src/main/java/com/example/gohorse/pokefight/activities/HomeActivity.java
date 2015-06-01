@@ -23,13 +23,14 @@ public class HomeActivity extends ActionBarActivity {
     public DrawerLayout mDrawerLayout;
 //--------------------------------------------------------------------------------------------------
 
-    ActionBarDrawerToggle mDrawerToggle;
-    Toolbar toolbar;
-    Button btnJogar;
-    Button btnBuscar;
-    Button btnConfiguracoes;
-    Button btnSair;
+    public ActionBarDrawerToggle mDrawerToggle;
+    public Toolbar toolbar;
+    public Button btnJogar;
+    public Button btnBuscar;
+    public Button btnConfiguracoes;
+    public Button btnSair;
     public static EditText editTextToolbar;
+    public static View view;
 
 //----Fragments-------------------------------------------------------------------------------------
     BuscarFragment buscarFragment = new BuscarFragment();
@@ -42,6 +43,8 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         btnBuscar = (Button) findViewById(R.id.btnBuscarMenuLateral);
@@ -105,9 +108,9 @@ public class HomeActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;

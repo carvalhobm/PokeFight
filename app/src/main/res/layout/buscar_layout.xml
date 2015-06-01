@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtNoPokemon"
         android:textSize="50dp"
-        android:layout_below="@+id/btnBuscarPokemon"
+
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:minWidth="400dp"
