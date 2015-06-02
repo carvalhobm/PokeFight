@@ -2,14 +2,17 @@ package com.example.gohorse.pokefight.fragments;
 
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,16 +25,18 @@ import com.example.gohorse.pokefight.model.Sprite;
 import com.example.gohorse.pokefight.model.SpriteFinal;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class PreJogoFragment extends Fragment {
-
-    //----GeraçoesPokemon-------------------------------------------------------------------------------
+    private Integer qntdCartas = 20;
+//----GeracoesPokemon-------------------------------------------------------------------------------
     private Integer minGen1 = 1;
     private Integer maxGen1 = 151;
     private Integer minGen2 = 152;
@@ -44,12 +49,12 @@ public class PreJogoFragment extends Fragment {
     private Integer maxGen5 = 649;
     private Integer minGen6 = 650;
     private Integer maxGen6 = 718;
-//----FimGeraçõesPokemon----------------------------------------------------------------------------
+//----FimGeracoesPokemon----------------------------------------------------------------------------
 
-
-    //----RetrofitUtils---------------------------------------------------------------------------------
+    public static List<Pokemon> listaCards;
+//----RetrofitUtils---------------------------------------------------------------------------------
     public static final String BASE_URL = "http://pokeapi.co";
-    private Context context;
+
 
     RestAdapter restAdapter = new RestAdapter.Builder()
             .setEndpoint(BASE_URL)
@@ -59,8 +64,24 @@ public class PreJogoFragment extends Fragment {
             restAdapter.create(MyApiInterface.class);
 //----FimRetrofitUtils------------------------------------------------------------------------------
 
+//----Buttons---------------------------------------------------------------------------------------
+    RadioButton rbGen1;
+    RadioButton rbGen2;
+    RadioButton rbGen3;
+    RadioButton rbGen4;
+    RadioButton rbGen5;
+    RadioButton rbGen6;
+    RadioButton rbAllGen;
+    Button btnJogar;
+//----FimButtons------------------------------------------------------------------------------------
+
     View view;
+    private Context context;
     RelativeLayout relativeLayoutToolbar;
+
+    JogoFragment jogoFragment = new JogoFragment();
+
+    FragmentTransaction fragmentTransaction;
 
     @Nullable
     @Override
@@ -69,6 +90,47 @@ public class PreJogoFragment extends Fragment {
         context = getActivity().getApplicationContext();
 
         setHasOptionsMenu(true);
+
+        listaCards = new ArrayList<Pokemon>();
+
+        rbGen1 = (RadioButton) view.findViewById(R.id.radioGen1);
+        rbGen2 = (RadioButton) view.findViewById(R.id.radioGen2);
+        rbGen3 = (RadioButton) view.findViewById(R.id.radioGen3);
+        rbGen4 = (RadioButton) view.findViewById(R.id.radioGen4);
+        rbGen5 = (RadioButton) view.findViewById(R.id.radioGen5);
+        rbGen6 = (RadioButton) view.findViewById(R.id.radioGen6);
+        rbAllGen = (RadioButton) view.findViewById(R.id.radioAllGen);
+        btnJogar = (Button) view.findViewById(R.id.btnJogar);
+
+        btnJogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(rbGen1.isChecked()){
+                    gerarDeck(minGen1, maxGen1);
+                    Log.d("TAG", "gen1");
+                } else if(rbGen2.isChecked()) {
+                    gerarDeck(minGen2, maxGen2);
+                    Log.d("TAG", "gen2");
+                } else if(rbGen3.isChecked()) {
+                    gerarDeck(minGen3, maxGen3);
+                    Log.d("TAG", "gen3");
+                } else if(rbGen4.isChecked()) {
+                    gerarDeck(minGen4, maxGen4);
+                    Log.d("TAG", "gen4");
+                } else if(rbGen5.isChecked()) {
+                    gerarDeck(minGen5, maxGen5);
+                    Log.d("TAG", "gen5");
+                } else if(rbGen6.isChecked()) {
+                    gerarDeck(minGen6, maxGen6);
+                    Log.d("TAG", "gen6");
+                } else if(rbAllGen.isChecked()) {
+                    gerarDeck(minGen1, maxGen6);
+                    Log.d("TAG", "Allgen");
+                }
+                getTelaJogo();
+            }
+        });
+
         return view;
     }
 
@@ -93,11 +155,7 @@ public class PreJogoFragment extends Fragment {
 
             @Override
             public void failure(RetrofitError error) {
-//                if (error.getMessage().equals("404 NOT FOUND")) {
-//                    txtView.setText("Pokemon nao encontrado!");
-//                } else if (error.getMessage().contains("Cannot resolve Host")) {
-//                    txtView.setText("Erro de rede!");
-//                }
+                String[] erro = error.getMessage().toString().split(":");
 
             }
         });
@@ -138,4 +196,50 @@ public class PreJogoFragment extends Fragment {
             }
         });
     }
+
+    public void gerarDeck(Integer init, Integer fim){
+        int i = 0;
+
+        Random rd = new Random();
+        Integer num = 0;
+        List<Integer> listaNumeros = new ArrayList<Integer>();
+        String index = "";
+
+
+        while(i < 20){
+            i++;
+            do {
+                num = rd.nextInt(fim);
+                index = "" + num;
+
+                if(listaNumeros.contains(num)){
+                    num = -1;
+                    index = "" + num;
+                }else{
+                    listaNumeros.add(num);
+                }
+                Log.d("WHILE", index);
+            }while(num < init);
+
+            apiService.getPokemon(index, new Callback<Pokemon>() {
+                @Override
+                public void success(Pokemon pokemon, Response response) {
+                    listaCards.add(pokemon);
+                    Log.d("TAG", pokemon.getName());
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+
+                }
+            });
+        }
+    }
+    public void getTelaJogo(){
+        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.replace(R.id.frameLayout, jogoFragment, "jogo");
+        fragmentTransaction.commit();
+    }
+
 }

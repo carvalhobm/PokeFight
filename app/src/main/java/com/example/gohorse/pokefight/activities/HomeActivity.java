@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.example.gohorse.pokefight.R;
 import com.example.gohorse.pokefight.fragments.BuscarFragment;
+import com.example.gohorse.pokefight.fragments.PreJogoFragment;
 
 public class HomeActivity extends ActionBarActivity {
 
@@ -34,6 +35,7 @@ public class HomeActivity extends ActionBarActivity {
 
 //----Fragments-------------------------------------------------------------------------------------
     BuscarFragment buscarFragment = new BuscarFragment();
+    PreJogoFragment preJogoFragment = new PreJogoFragment();
 
     FragmentTransaction fragmentTransaction;
 
@@ -44,11 +46,12 @@ public class HomeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
-
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        btnJogar = (Button) findViewById(R.id.btnJogarMenuLateral);
         btnBuscar = (Button) findViewById(R.id.btnBuscarMenuLateral);
         btnSair = (Button) findViewById(R.id.btnSair);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         relativeLayoutToolbar = (RelativeLayout) findViewById(R.id.relativeLayoutToolbar);
         editTextToolbar = (EditText) findViewById(R.id.editTextToolbar);
@@ -76,6 +79,14 @@ public class HomeActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        btnJogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getTelaPreJogo();
+                mDrawerLayout.closeDrawers();
+            }
+        });
 
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +135,13 @@ public class HomeActivity extends ActionBarActivity {
         super.onPostCreate(savedInstanceState);
 
         mDrawerToggle.syncState();
+    }
+
+    public void getTelaPreJogo(){
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.replace(R.id.frameLayout, preJogoFragment, "preJogo");
+        fragmentTransaction.commit();
     }
 
     public void getTelaBuscar(){
