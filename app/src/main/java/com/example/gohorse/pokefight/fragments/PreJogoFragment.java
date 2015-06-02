@@ -105,29 +105,29 @@ public class PreJogoFragment extends Fragment {
         btnJogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rbGen1.isChecked()){
+                if (rbGen1.isChecked()) {
                     gerarDeck(minGen1, maxGen1);
                     Log.d("TAG", "gen1");
-                } else if(rbGen2.isChecked()) {
+                } else if (rbGen2.isChecked()) {
                     gerarDeck(minGen2, maxGen2);
                     Log.d("TAG", "gen2");
-                } else if(rbGen3.isChecked()) {
+                } else if (rbGen3.isChecked()) {
                     gerarDeck(minGen3, maxGen3);
                     Log.d("TAG", "gen3");
-                } else if(rbGen4.isChecked()) {
+                } else if (rbGen4.isChecked()) {
                     gerarDeck(minGen4, maxGen4);
                     Log.d("TAG", "gen4");
-                } else if(rbGen5.isChecked()) {
+                } else if (rbGen5.isChecked()) {
                     gerarDeck(minGen5, maxGen5);
                     Log.d("TAG", "gen5");
-                } else if(rbGen6.isChecked()) {
+                } else if (rbGen6.isChecked()) {
                     gerarDeck(minGen6, maxGen6);
                     Log.d("TAG", "gen6");
-                } else if(rbAllGen.isChecked()) {
+                } else if (rbAllGen.isChecked()) {
                     gerarDeck(minGen1, maxGen6);
                     Log.d("TAG", "Allgen");
                 }
-                getTelaJogo();
+
             }
         });
 
@@ -226,6 +226,7 @@ public class PreJogoFragment extends Fragment {
                 public void success(Pokemon pokemon, Response response) {
                     listaCards.add(pokemon);
                     Log.d("TAG", pokemon.getName());
+                    getTelaJogo();
                 }
 
                 @Override
