@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/txtViewSituacao"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Vitórias: "
+        android:id="@+id/lvlVitorias"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/txtViewSituacao"
+        android:layout_alignLeft="@+id/txtViewSituacao"
+        android:layout_alignStart="@+id/txtViewSituacao"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Derrotas: "
+        android:id="@+id/lblDerrotas"
+        android:layout_below="@+id/lvlVitorias"
+        android:layout_alignLeft="@+id/lvlVitorias"
+        android:layout_alignStart="@+id/lvlVitorias"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/txtViewVitorias"
+        android:layout_alignBottom="@+id/lvlVitorias"
+        android:layout_toRightOf="@+id/lblDerrotas"
+        android:layout_toEndOf="@+id/lblDerrotas" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/txtViewDerrotas"
+        android:layout_alignBottom="@+id/lblDerrotas"
+        android:layout_alignLeft="@+id/txtViewVitorias"
+        android:layout_alignStart="@+id/txtViewVitorias" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Novo jogo"
+        android:id="@+id/btnNovoJogo"
+        android:layout_below="@+id/lblDerrotas"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp" />
+</RelativeLayout>

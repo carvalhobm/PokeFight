@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.gohorse.pokefight.R;
+import com.example.gohorse.pokefight.activities.HomeActivity;
 import com.example.gohorse.pokefight.interfaces.MyApiInterface;
 import com.example.gohorse.pokefight.model.Description;
 import com.example.gohorse.pokefight.model.DescriptionFinal;
@@ -26,6 +28,7 @@ import com.example.gohorse.pokefight.model.SpriteFinal;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -221,12 +224,15 @@ public class PreJogoFragment extends Fragment {
                 Log.d("WHILE", index);
             }while(num < init);
 
+            final int finalI = i;
             apiService.getPokemon(index, new Callback<Pokemon>() {
                 @Override
                 public void success(Pokemon pokemon, Response response) {
                     listaCards.add(pokemon);
                     Log.d("TAG", pokemon.getName());
-                    getTelaJogo();
+                    if(finalI == 20){
+                        getTelaJogo();
+                    }
                 }
 
                 @Override
@@ -235,12 +241,18 @@ public class PreJogoFragment extends Fragment {
                 }
             });
         }
-    }
-    public void getTelaJogo(){
-        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-        fragmentTransaction.replace(R.id.frameLayout, jogoFragment, "jogo");
-        fragmentTransaction.commit();
+    }
+
+    public void getTelaJogo(){
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm
+                .beginTransaction();
+        JogoFragment llf = new JogoFragment();
+        ft.replace(R.id.frameLayout, llf);
+        ft.addToBackStack(null);
+
+        ft.commit();
     }
 
 }

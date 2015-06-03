@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -76,7 +78,10 @@ public class BuscarFragment extends Fragment {
             restAdapter.create(MyApiInterface.class);
 
     View view;
+
     RelativeLayout relativeLayoutToolbar;
+    RecyclerView rv;
+    LinearLayoutManager lmm;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -86,6 +91,7 @@ public class BuscarFragment extends Fragment {
         view = inflater.inflate(R.layout.buscar_layout, container, false);
         context = getActivity().getApplicationContext();
         imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+
 
         setHasOptionsMenu(true);
         return view;

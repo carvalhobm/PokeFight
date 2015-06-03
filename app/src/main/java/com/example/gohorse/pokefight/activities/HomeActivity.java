@@ -15,11 +15,12 @@ import android.widget.RelativeLayout;
 
 import com.example.gohorse.pokefight.R;
 import com.example.gohorse.pokefight.fragments.BuscarFragment;
+import com.example.gohorse.pokefight.fragments.JogoFragment;
 import com.example.gohorse.pokefight.fragments.PreJogoFragment;
 
 public class HomeActivity extends ActionBarActivity {
 
-//----Layouts---------------------------------------------------------------------------------------
+    //----Layouts---------------------------------------------------------------------------------------
     public static RelativeLayout relativeLayoutToolbar;
     public DrawerLayout mDrawerLayout;
 //--------------------------------------------------------------------------------------------------
@@ -33,11 +34,12 @@ public class HomeActivity extends ActionBarActivity {
     public static EditText editTextToolbar;
     public static View view;
 
-//----Fragments-------------------------------------------------------------------------------------
-    BuscarFragment buscarFragment = new BuscarFragment();
-    PreJogoFragment preJogoFragment = new PreJogoFragment();
+    //----Fragments-------------------------------------------------------------------------------------
+    private BuscarFragment buscarFragment = new BuscarFragment();
+    private PreJogoFragment preJogoFragment = new PreJogoFragment();
+    private JogoFragment jogoFragment = new JogoFragment();
 
-    FragmentTransaction fragmentTransaction;
+    private FragmentTransaction fragmentTransaction;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -50,6 +52,7 @@ public class HomeActivity extends ActionBarActivity {
 
         btnJogar = (Button) findViewById(R.id.btnJogarMenuLateral);
         btnBuscar = (Button) findViewById(R.id.btnBuscarMenuLateral);
+        btnConfiguracoes = (Button) findViewById(R.id.btnConfiguracoesMenuLateral);
         btnSair = (Button) findViewById(R.id.btnSair);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -83,6 +86,7 @@ public class HomeActivity extends ActionBarActivity {
         btnJogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                relativeLayoutToolbar.setVisibility(View.GONE);
                 getTelaPreJogo();
                 mDrawerLayout.closeDrawers();
             }
@@ -93,6 +97,13 @@ public class HomeActivity extends ActionBarActivity {
             public void onClick(View v) {
                 getTelaBuscar();
                 mDrawerLayout.closeDrawers();
+            }
+        });
+
+        btnConfiguracoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayoutToolbar.setVisibility(View.GONE);
             }
         });
 
@@ -148,6 +159,14 @@ public class HomeActivity extends ActionBarActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         fragmentTransaction.replace(R.id.frameLayout, buscarFragment, "buscar");
+        fragmentTransaction.commit();
+    }
+
+    public void getTelaJogo(){
+        fragmentTransaction = getSupportFragmentManager()
+                .beginTransaction();
+
+        fragmentTransaction.replace(R.id.frameLayout, jogoFragment, "jogo");
         fragmentTransaction.commit();
     }
 
