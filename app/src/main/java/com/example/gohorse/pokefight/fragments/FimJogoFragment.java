@@ -18,7 +18,7 @@ public class FimJogoFragment extends Fragment {
     private TextView txtViewSituacao;
     private TextView txtViewVitorias;
     private TextView txtViewDerrotas;
-    private Button btnNovoJogo;
+    public static Button btnNovoJogo;
 
     View view;
     private Context context;
@@ -75,7 +75,7 @@ public class FimJogoFragment extends Fragment {
                 .beginTransaction();
         PreJogoFragment llf = new PreJogoFragment();
         ft.replace(R.id.frameLayout, llf);
-        ft.addToBackStack(null);
+//        ft.addToBackStack(null);
 
         ft.commit();
     }

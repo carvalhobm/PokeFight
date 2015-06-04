@@ -33,7 +33,7 @@
         android:id="@+id/btnConfiguracoesMenuLateral"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Configurações"
+        android:text="Sobre"
         android:textSize="15dp"
         android:background="@color/primary_material_light"
         android:clickable="true"

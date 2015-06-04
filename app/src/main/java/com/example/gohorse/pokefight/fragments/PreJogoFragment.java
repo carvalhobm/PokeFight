@@ -2,7 +2,9 @@ package com.example.gohorse.pokefight.fragments;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -85,6 +87,7 @@ public class PreJogoFragment extends Fragment {
     JogoFragment jogoFragment = new JogoFragment();
 
     FragmentTransaction fragmentTransaction;
+    SharedPreferences.Editor editor;
 
     @Nullable
     @Override
@@ -105,35 +108,54 @@ public class PreJogoFragment extends Fragment {
         rbAllGen = (RadioButton) view.findViewById(R.id.radioAllGen);
         btnJogar = (Button) view.findViewById(R.id.btnJogar);
 
+
+        String lastGen = HomeActivity.sharedPreferences.getString("Generation", "kade?");
+
+        editor = HomeActivity.sharedPreferences.edit();
+        Log.d("!@#", lastGen);
+        if (lastGen.equals("Gen1")) {
+            rbGen1.setChecked(true);
+        }else if (lastGen.equals("Gen2")) {
+            rbGen2.setChecked(true);
+        }else if (lastGen.equals("Gen3")) {
+            rbGen3.setChecked(true);
+        }else if (lastGen.equals("Gen4")) {
+            rbGen4.setChecked(true);
+        }else if (lastGen.equals("Gen5")) {
+            rbGen5.setChecked(true);
+        }else if (lastGen.equals("Gen6")) {
+            rbGen6.setChecked(true);
+        }else if (lastGen.equals("AllGen")) {
+            rbAllGen.setChecked(true);
+        }
         btnJogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (rbGen1.isChecked()) {
-                    gerarDeck(minGen1, maxGen1);
+                    gerarDeck(minGen1, maxGen1, "Gen1");
                     Log.d("TAG", "gen1");
                 } else if (rbGen2.isChecked()) {
-                    gerarDeck(minGen2, maxGen2);
+                    gerarDeck(minGen2, maxGen2, "Gen2");
                     Log.d("TAG", "gen2");
                 } else if (rbGen3.isChecked()) {
-                    gerarDeck(minGen3, maxGen3);
+                    gerarDeck(minGen3, maxGen3, "Gen3");
                     Log.d("TAG", "gen3");
                 } else if (rbGen4.isChecked()) {
-                    gerarDeck(minGen4, maxGen4);
+                    gerarDeck(minGen4, maxGen4, "Gen4");
                     Log.d("TAG", "gen4");
                 } else if (rbGen5.isChecked()) {
-                    gerarDeck(minGen5, maxGen5);
+                    gerarDeck(minGen5, maxGen5, "Gen5");
                     Log.d("TAG", "gen5");
                 } else if (rbGen6.isChecked()) {
-                    gerarDeck(minGen6, maxGen6);
+                    gerarDeck(minGen6, maxGen6, "Gen6");
                     Log.d("TAG", "gen6");
                 } else if (rbAllGen.isChecked()) {
-                    gerarDeck(minGen1, maxGen6);
+                    gerarDeck(minGen1, maxGen6, "AllGen");
                     Log.d("TAG", "Allgen");
                 }
 
             }
         });
-
         return view;
     }
 
@@ -200,7 +222,11 @@ public class PreJogoFragment extends Fragment {
         });
     }
 
-    public void gerarDeck(Integer init, Integer fim){
+    public void gerarDeck(Integer init, Integer fim, String gen){
+
+        editor.putString("Generation", gen);
+        editor.commit();
+
         int i = 0;
 
         Random rd = new Random();
@@ -210,7 +236,7 @@ public class PreJogoFragment extends Fragment {
 
 
         while(i < 20){
-            i++;
+
             do {
                 num = rd.nextInt(fim);
                 index = "" + num;
@@ -230,7 +256,7 @@ public class PreJogoFragment extends Fragment {
                 public void success(Pokemon pokemon, Response response) {
                     listaCards.add(pokemon);
                     Log.d("TAG", pokemon.getName());
-                    if(finalI == 20){
+                    if(finalI == 19){
                         getTelaJogo();
                     }
                 }
@@ -240,6 +266,7 @@ public class PreJogoFragment extends Fragment {
 
                 }
             });
+            i++;
         }
 
     }
@@ -250,7 +277,6 @@ public class PreJogoFragment extends Fragment {
                 .beginTransaction();
         JogoFragment llf = new JogoFragment();
         ft.replace(R.id.frameLayout, llf);
-        ft.addToBackStack(null);
 
         ft.commit();
     }

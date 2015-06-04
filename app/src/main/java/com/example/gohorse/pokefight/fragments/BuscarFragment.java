@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -90,43 +91,74 @@ public class BuscarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.buscar_layout, container, false);
         context = getActivity().getApplicationContext();
-        imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-
-
         setHasOptionsMenu(true);
+
+        HomeActivity.editTextToolbar.setFocusable(true);
+        HomeActivity.editTextToolbar.setSelection(0);
+        HomeActivity.editTextToolbar.requestFocus();
+        openKeyboard();
+
         return view;
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.menu_buscar, menu);
         HomeActivity.relativeLayoutToolbar.setVisibility(View.VISIBLE);
+
+        HomeActivity.editTextToolbar.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    String pokemon = HomeActivity.editTextToolbar.getText().toString();
+
+                    buscarPokemon(pokemon);
+                    setLabelsInvisible();
+                    closeKeyboard();
+                    HomeActivity.relativeLayoutToolbar.setVisibility(View.GONE);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
         super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         int id = menuItem.getItemId();
 
+
+
+
+        checkFocus();
+
         if( id == R.id.itemBuscar && HomeActivity.relativeLayoutToolbar.getVisibility() == View.GONE) {
-            imm.showSoftInput(view, 1);
-            HomeActivity.editTextToolbar.setFocusable(true);
 
             HomeActivity.relativeLayoutToolbar.setVisibility(View.VISIBLE);
 
+            HomeActivity.editTextToolbar.setFocusable(true);
+            HomeActivity.editTextToolbar.setSelection(0);
+            HomeActivity.editTextToolbar.requestFocus();
+
+
         } else if (id == R.id.itemBuscar && HomeActivity.relativeLayoutToolbar.getVisibility() == View.VISIBLE
                 && !HomeActivity.editTextToolbar.getText().toString().equals("")){
-            imm.hideSoftInputFromWindow(HomeActivity.editTextToolbar.getWindowToken(), 0);
 
             String pokemon = HomeActivity.editTextToolbar.getText().toString();
             buscarPokemon(pokemon);
+            HomeActivity.editTextToolbar.setSelection(0);
+            HomeActivity.editTextToolbar.requestFocus();
 
             HomeActivity.editTextToolbar.setText("");
             HomeActivity.relativeLayoutToolbar.setVisibility(View.GONE);
 
         } else {
-            imm.hideSoftInputFromWindow(HomeActivity.editTextToolbar.getWindowToken(), 0);
             HomeActivity.relativeLayoutToolbar.setVisibility(View.GONE);
         }
         return true;
@@ -168,19 +200,18 @@ public class BuscarFragment extends Fragment {
                 txtViewSpDefesa.setText(pokemon.getSp_def().toString());
                 txtViewVelocidade.setText(pokemon.getSpeed().toString());
 
-                imm.hideSoftInputFromWindow(HomeActivity.editTextToolbar.getWindowToken(), 0);
             }
 
             @Override
             public void failure(RetrofitError error) {
-//                if (error.getMessage().equals("404 NOT FOUND")) {
-//                    txtView.setText("Pokemon nao encontrado!");
-//                } else if (error.getMessage().contains("Unable to resolve host")){
-//                    txtView.setText("Erro de rede!");
-//                } else{
-//                    txtView.setText(error.getMessage().toString());
-//                }
-                txtView.setText(error.getMessage().toString());
+                if (error.getMessage().equals("404 NOT FOUND")) {
+                    txtView.setText("Pokemon nao encontrado!");
+                } else if (error.getMessage().contains("Unable to resolve host")){
+                    txtView.setText("Erro de rede!");
+                } else{
+                    txtView.setText(error.getMessage().toString());
+                }
+//                txtView.setText(error.getMessage().toString());
                 setLabelsInvisible();
             }
         });
@@ -277,6 +308,7 @@ public class BuscarFragment extends Fragment {
         lblVelocidade.setVisibility(View.INVISIBLE);
         imageView.setVisibility(View.INVISIBLE);
 
+        HomeActivity.editTextToolbar.setText("");
         txtViewDescricao.setText("");
         txtViewHp.setText("");
         txtViewAtaque.setText("");
@@ -285,5 +317,29 @@ public class BuscarFragment extends Fragment {
         txtViewSpAtk.setText("");
         txtViewSpDefesa.setText("");
         txtViewVelocidade.setText("");
+    }
+
+    public void openKeyboard(){
+        imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(HomeActivity.editTextToolbar, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    public void closeKeyboard(){
+        imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(HomeActivity.editTextToolbar.getWindowToken(), 0);
+    }
+
+    public void checkFocus(){
+
+        HomeActivity.editTextToolbar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    closeKeyboard();
+                } else {
+                    openKeyboard();
+                }
+            }
+        });
     }
 }
