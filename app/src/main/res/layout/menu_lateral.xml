@@ -8,12 +8,23 @@
     >
 
     <Button
+        android:id="@+id/btnInicio"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Inicio"
+        android:textSize="15dp"
+        android:background="#80DEEA"
+        android:clickable="true"
+        android:layout_margin="1dp"
+        />
+
+    <Button
         android:id="@+id/btnJogarMenuLateral"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="jogar"
+        android:text="Jogar"
         android:textSize="15dp"
-        android:background="@color/primary_material_light"
+        android:background="#5C6BC0"
         android:layout_margin="1dp"
         android:clickable="true"
         />
@@ -24,7 +35,7 @@
         android:layout_height="50dp"
         android:text="Buscar"
         android:textSize="15dp"
-        android:background="@color/primary_material_light"
+        android:background="#5C6BC0"
         android:clickable="true"
         android:layout_margin="1dp"
         />
@@ -46,7 +57,7 @@
         android:layout_height="50dp"
         android:text="Get Out!"
         android:textSize="15dp"
-        android:background="@color/primary_material_light"
+        android:background="#80DEEA"
         android:clickable="true"
         android:layout_margin="1dp"
         />

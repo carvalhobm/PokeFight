@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class PreJogoFragment extends Fragment {
-    private Integer qntdCartas = 20;
 //----GeracoesPokemon-------------------------------------------------------------------------------
     private Integer minGen1 = 1;
     private Integer maxGen1 = 151;
@@ -82,12 +82,8 @@ public class PreJogoFragment extends Fragment {
 
     View view;
     private Context context;
-    RelativeLayout relativeLayoutToolbar;
-
-    JogoFragment jogoFragment = new JogoFragment();
-
-    FragmentTransaction fragmentTransaction;
     SharedPreferences.Editor editor;
+    public boolean isPressed;
 
     @Nullable
     @Override
@@ -96,6 +92,7 @@ public class PreJogoFragment extends Fragment {
         context = getActivity().getApplicationContext();
 
         setHasOptionsMenu(true);
+        this.isPressed = false;
 
         listaCards = new ArrayList<Pokemon>();
 
@@ -108,11 +105,10 @@ public class PreJogoFragment extends Fragment {
         rbAllGen = (RadioButton) view.findViewById(R.id.radioAllGen);
         btnJogar = (Button) view.findViewById(R.id.btnJogar);
 
-
         String lastGen = HomeActivity.sharedPreferences.getString("Generation", "kade?");
 
         editor = HomeActivity.sharedPreferences.edit();
-        Log.d("!@#", lastGen);
+
         if (lastGen.equals("Gen1")) {
             rbGen1.setChecked(true);
         }else if (lastGen.equals("Gen2")) {
@@ -131,40 +127,41 @@ public class PreJogoFragment extends Fragment {
         btnJogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (rbGen1.isChecked()) {
-                    gerarDeck(minGen1, maxGen1, "Gen1");
-                    Log.d("TAG", "gen1");
-                } else if (rbGen2.isChecked()) {
-                    gerarDeck(minGen2, maxGen2, "Gen2");
-                    Log.d("TAG", "gen2");
-                } else if (rbGen3.isChecked()) {
-                    gerarDeck(minGen3, maxGen3, "Gen3");
-                    Log.d("TAG", "gen3");
-                } else if (rbGen4.isChecked()) {
-                    gerarDeck(minGen4, maxGen4, "Gen4");
-                    Log.d("TAG", "gen4");
-                } else if (rbGen5.isChecked()) {
-                    gerarDeck(minGen5, maxGen5, "Gen5");
-                    Log.d("TAG", "gen5");
-                } else if (rbGen6.isChecked()) {
-                    gerarDeck(minGen6, maxGen6, "Gen6");
-                    Log.d("TAG", "gen6");
-                } else if (rbAllGen.isChecked()) {
-                    gerarDeck(minGen1, maxGen6, "AllGen");
-                    Log.d("TAG", "Allgen");
+                if(!isPressed) {
+                    if (rbGen1.isChecked()) {
+                        gerarDeck(minGen1, maxGen1, "Gen1");
+                        Log.d("TAG", "gen1");
+                    } else if (rbGen2.isChecked()) {
+                        gerarDeck(minGen2, maxGen2, "Gen2");
+                        Log.d("TAG", "gen2");
+                    } else if (rbGen3.isChecked()) {
+                        gerarDeck(minGen3, maxGen3, "Gen3");
+                        Log.d("TAG", "gen3");
+                    } else if (rbGen4.isChecked()) {
+                        gerarDeck(minGen4, maxGen4, "Gen4");
+                        Log.d("TAG", "gen4");
+                    } else if (rbGen5.isChecked()) {
+                        gerarDeck(minGen5, maxGen5, "Gen5");
+                        Log.d("TAG", "gen5");
+                    } else if (rbGen6.isChecked()) {
+                        gerarDeck(minGen6, maxGen6, "Gen6");
+                        Log.d("TAG", "gen6");
+                    } else if (rbAllGen.isChecked()) {
+                        gerarDeck(minGen1, maxGen6, "AllGen");
+                        Log.d("TAG", "Allgen");
+                    }
+                    isPressed = true;
+                    HomeActivity.progressDialog.show();
                 }
-
             }
         });
         return view;
     }
 
-
     public void random() {
 
         Random rand = new Random();
         Integer index = rand.nextInt(718) + 1;
-
 
         apiService.getPokemon(index.toString(), new Callback<Pokemon>() {
             @Override
@@ -184,8 +181,6 @@ public class PreJogoFragment extends Fragment {
 
             }
         });
-
-
     }
 
     public void setImg(List<Sprite> sprites){
@@ -277,7 +272,6 @@ public class PreJogoFragment extends Fragment {
                 .beginTransaction();
         JogoFragment llf = new JogoFragment();
         ft.replace(R.id.frameLayout, llf);
-
         ft.commit();
     }
 

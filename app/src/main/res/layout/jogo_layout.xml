@@ -25,7 +25,7 @@
                 android:layout_centerHorizontal="true" />
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:id="@+id/imgViewPokemon"
                 android:minHeight="200dp"
@@ -37,11 +37,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imgViewTipo"
-                android:minHeight="40dp"
+                android:maxHeight="34dp"
                 android:minWidth="50dp"
+                android:minHeight="34dp"
                 android:layout_below="@+id/imgViewPokemon"
-                android:layout_toLeftOf="@+id/txtViewNome"
-                android:layout_toStartOf="@+id/txtViewNome" />
+                android:layout_toLeftOf="@+id/txtViewTipo"
+                android:layout_toStartOf="@+id/txtViewTipo" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,19 +50,19 @@
                 android:text="laga laga"
                 android:id="@+id/txtViewTipo"
                 android:textSize="30dp"
-                android:layout_alignTop="@+id/imgViewTipo"
-                android:layout_toRightOf="@+id/imgViewTipo"
-                android:layout_toEndOf="@+id/imgViewTipo" />
+                android:layout_below="@+id/imgViewPokemon"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBottom="@+id/imgViewTipo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hp:"
                 android:id="@+id/lblHp"
-                android:layout_below="@+id/imgViewTipo"
-                android:layout_alignLeft="@+id/imgViewTipo"
-                android:layout_alignStart="@+id/imgViewTipo"
-                android:layout_marginTop="37dp" />
+                android:layout_marginTop="33dp"
+                android:layout_below="@+id/txtViewTipo"
+                android:layout_toLeftOf="@+id/txtViewTipo"
+                android:layout_toStartOf="@+id/txtViewTipo" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,8 +70,7 @@
                 android:text="30"
                 android:id="@+id/txtViewHp"
                 android:layout_alignTop="@+id/lblHp"
-                android:layout_alignLeft="@+id/txtViewTipo"
-                android:layout_alignStart="@+id/txtViewTipo" />
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 
@@ -79,22 +79,24 @@
             android:layout_height="wrap_content"
             android:text="Vitoria"
             android:id="@+id/btnVitoria"
-            android:layout_below="@+id/rel"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:minWidth="100dp"
-            android:maxWidth="100dp" />
+            android:maxWidth="100dp"
+            android:layout_below="@+id/rel"
+            android:layout_toRightOf="@+id/btnEmpate"
+            android:layout_toEndOf="@+id/btnEmpate"
+            android:padding="2dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Derrota"
             android:id="@+id/btnDerrota"
-            android:layout_alignTop="@+id/btnVitoria"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:minWidth="100dp"
-            android:maxWidth="100dp" />
+            android:maxWidth="100dp"
+            android:layout_below="@+id/rel"
+            android:layout_toLeftOf="@+id/btnEmpate"
+            android:layout_toStartOf="@+id/btnEmpate"
+            android:padding="2dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -104,6 +106,7 @@
             android:layout_below="@+id/rel"
             android:layout_centerHorizontal="true"
             android:minWidth="100dp"
-            android:maxWidth="100dp" />
+            android:maxWidth="100dp"
+            android:padding="2dp" />
     </RelativeLayout>
 </FrameLayout>

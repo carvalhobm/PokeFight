@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.gohorse.pokefight.R;
+import com.example.gohorse.pokefight.activities.HomeActivity;
 import com.example.gohorse.pokefight.interfaces.MyApiInterface;
 import com.example.gohorse.pokefight.model.Sprite;
 import com.example.gohorse.pokefight.model.SpriteFinal;
@@ -34,6 +35,7 @@ import retrofit.RetrofitError;
 
 public class JogoFragment extends Fragment {
 
+    private Integer qntdCartas = 20;
     private Integer i;
     public static Integer vitorias;
     public static Integer derrotas;
@@ -42,11 +44,11 @@ public class JogoFragment extends Fragment {
 
     public static final String BASE_URL = "http://pokeapi.co";
 
-    RestAdapter restAdapter = new RestAdapter.Builder()
+    public RestAdapter restAdapter = new RestAdapter.Builder()
             .setEndpoint(BASE_URL)
             .build();
 
-    final MyApiInterface apiService =
+    final public MyApiInterface apiService =
             restAdapter.create(MyApiInterface.class);
 
     public TextView txtViewPokemon;
@@ -59,7 +61,7 @@ public class JogoFragment extends Fragment {
     public Button btnEmpate;
     public Button btnDerrota;
 
-    View view;
+    public View view;
     private Context context;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,7 +91,7 @@ public class JogoFragment extends Fragment {
             public void onClick(View v) {
                 PreJogoFragment.listaCards.remove(i);
                 i++;
-                if (i < 20) {
+                if (i < qntdCartas) {
                     vitorias++;
                     setCard(i);
                 } else {
@@ -103,7 +105,7 @@ public class JogoFragment extends Fragment {
         btnEmpate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(i < 19){
+                if(i < (qntdCartas-1)){
                     Collections.shuffle(PreJogoFragment.listaCards);
                     setCard(i);
                 } else
@@ -118,7 +120,7 @@ public class JogoFragment extends Fragment {
             public void onClick(View v) {
                 PreJogoFragment.listaCards.remove(i);
                 i++;
-                if (i < 20) {
+                if (i < qntdCartas) {
                     derrotas++;
                     setCard(i);
                 } else {
@@ -127,7 +129,6 @@ public class JogoFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
 
@@ -140,9 +141,6 @@ public class JogoFragment extends Fragment {
         txtViewHp.setText(PreJogoFragment.listaCards.get(index).getHp().toString().trim());
         setImg(PreJogoFragment.listaCards.get(i).getSprites());
         setImgTipo(tipo);
-
-
-
     }
 
     public void setImg(List<Sprite> sprites){
@@ -155,7 +153,6 @@ public class JogoFragment extends Fragment {
                                 + spriteFinal.getImage()
                 ).into(imgViewPokemon);
             }
-
             @Override
             public void failure(RetrofitError error) {
                 Log.d("TAGsetImg", "FALHA");
@@ -220,6 +217,7 @@ public class JogoFragment extends Fragment {
             Drawable myDrawable = getResources().getDrawable(R.drawable.voador);
             imgViewTipo.setImageDrawable(myDrawable);
         }
+        HomeActivity.progressDialog.hide();
     }
 
     public void getTelaFimJogo(){
@@ -229,7 +227,6 @@ public class JogoFragment extends Fragment {
         FimJogoFragment llf = new FimJogoFragment();
         ft.replace(R.id.frameLayout, llf);
         ft.addToBackStack(null);
-
         ft.commit();
     }
 }

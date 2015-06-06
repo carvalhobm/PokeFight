@@ -47,7 +47,7 @@
             android:layout_height="match_parent"
 
             >
-            <include layout="@layout/rv_layout"/>
+
         </FrameLayout>
 
         <include layout="@layout/menu_lateral" />

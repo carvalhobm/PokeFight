@@ -44,7 +44,6 @@ public class BuscarFragment extends Fragment {
 //----Campos e Labels------------------------------------------------------------------------------------
 
     private ImageView imageView;
-    private EditText editText;
 
     private TextView txtView;
     private TextView txtViewDescricao;
@@ -71,18 +70,14 @@ public class BuscarFragment extends Fragment {
     public static final String BASE_URL = "http://pokeapi.co";
     private Context context;
 
-    RestAdapter restAdapter = new RestAdapter.Builder()
+    public RestAdapter restAdapter = new RestAdapter.Builder()
             .setEndpoint(BASE_URL)
             .build();
 
-    final MyApiInterface apiService =
+    final public MyApiInterface apiService =
             restAdapter.create(MyApiInterface.class);
 
-    View view;
-
-    RelativeLayout relativeLayoutToolbar;
-    RecyclerView rv;
-    LinearLayoutManager lmm;
+    public View view;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -92,6 +87,7 @@ public class BuscarFragment extends Fragment {
         view = inflater.inflate(R.layout.buscar_layout, container, false);
         context = getActivity().getApplicationContext();
         setHasOptionsMenu(true);
+        lerComponentesTela();
 
         HomeActivity.editTextToolbar.setFocusable(true);
         HomeActivity.editTextToolbar.setSelection(0);
@@ -100,7 +96,6 @@ public class BuscarFragment extends Fragment {
 
         return view;
     }
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -124,17 +119,12 @@ public class BuscarFragment extends Fragment {
                 return false;
             }
         });
-
         super.onCreateOptionsMenu(menu, inflater);
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem){
         int id = menuItem.getItemId();
-
-
-
 
         checkFocus();
 
@@ -165,19 +155,9 @@ public class BuscarFragment extends Fragment {
     }
 
     public void buscarPokemon(String stringPokemon) {
+        HomeActivity.progressDialog.show();
 
-        imageView = (ImageView) view.findViewById(R.id.imageView);
-
-        txtView = (TextView) view.findViewById(R.id.txtNoPokemon);
-        txtViewHp = (TextView) view.findViewById(R.id.txtViewHp);
-        txtViewAtaque = (TextView) view.findViewById(R.id.txtViewAtaque);
-        txtViewDefesa = (TextView) view.findViewById(R.id.txtViewDefesa);
-        txtViewPeso = (TextView) view.findViewById(R.id.txtViewPeso);
-        txtViewSpAtk = (TextView) view.findViewById(R.id.txtViewSpAtaque);
-        txtViewSpDefesa = (TextView) view.findViewById(R.id.txtViewSpDefesa);
-        txtViewVelocidade = (TextView) view.findViewById(R.id.txtViewVelocidade);
-
-        apiService.getPokemon(stringPokemon, new Callback<Pokemon>() {
+        apiService.getPokemon(stringPokemon.trim(), new Callback<Pokemon>() {
             @Override
             public void success(Pokemon pokemon, Response response) {
 
@@ -211,7 +191,6 @@ public class BuscarFragment extends Fragment {
                 } else{
                     txtView.setText(error.getMessage().toString());
                 }
-//                txtView.setText(error.getMessage().toString());
                 setLabelsInvisible();
             }
         });
@@ -220,7 +199,6 @@ public class BuscarFragment extends Fragment {
     }
 
     public void setImg(List<Sprite> sprites){
-        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 
         apiService.getPokemonSprite(sprites.get(0).getResourceUri().replaceFirst("/", ""), new Callback<SpriteFinal>() {
             @Override
@@ -238,7 +216,6 @@ public class BuscarFragment extends Fragment {
     }
 
     public void setDescricao(List<Description> listaDescricoes){
-        final TextView txtViewDescricao = (TextView) view.findViewById(R.id.txtViewDescricao);
 
         apiService.getPokemonDescription(listaDescricoes.get(0).getResourceUri().replaceFirst("/", ""), new Callback<DescriptionFinal>() {
             @Override
@@ -251,20 +228,10 @@ public class BuscarFragment extends Fragment {
                 Log.d("TAGsetDescricao", "FALHA");
             }
         });
+        HomeActivity.progressDialog.hide();
     }
 
     public void setLabelsVisible(){
-
-        final TextView lblDescricao = (TextView) view.findViewById(R.id.lblDescricao);
-        final TextView lblHp = (TextView) view.findViewById(R.id.lblHp);
-        final TextView lblAtaque = (TextView) view.findViewById(R.id.lblAtaque);
-        final TextView lblDefesa = (TextView) view.findViewById(R.id.lblDefesa);
-        final TextView lblPeso = (TextView) view.findViewById(R.id.lblPeso);
-        final TextView lblSpAtk = (TextView) view.findViewById(R.id.lblSpAtk);
-        final TextView lblSpDefesa = (TextView) view.findViewById(R.id.lblSpDefesa);
-        final TextView lblVelocidade = (TextView) view.findViewById(R.id.lblVelocidade);
-        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-
         lblAtaque.setVisibility(View.VISIBLE);
         lblDefesa.setVisibility(View.VISIBLE);
         lblDescricao.setVisibility(View.VISIBLE);
@@ -274,29 +241,9 @@ public class BuscarFragment extends Fragment {
         lblSpDefesa.setVisibility(View.VISIBLE);
         lblVelocidade.setVisibility(View.VISIBLE);
         imageView.setVisibility(View.VISIBLE);
-
     }
 
     public void setLabelsInvisible(){
-
-        final TextView lblDescricao = (TextView) view.findViewById(R.id.lblDescricao);
-        final TextView lblHp = (TextView) view.findViewById(R.id.lblHp);
-        final TextView lblAtaque = (TextView) view.findViewById(R.id.lblAtaque);
-        final TextView lblDefesa = (TextView) view.findViewById(R.id.lblDefesa);
-        final TextView lblPeso = (TextView) view.findViewById(R.id.lblPeso);
-        final TextView lblSpAtk = (TextView) view.findViewById(R.id.lblSpAtk);
-        final TextView lblSpDefesa = (TextView) view.findViewById(R.id.lblSpDefesa);
-        final TextView lblVelocidade = (TextView) view.findViewById(R.id.lblVelocidade);
-        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-
-        txtViewDescricao = (TextView) view.findViewById(R.id.txtViewDescricao);
-        txtViewHp = (TextView) view.findViewById(R.id.txtViewHp);
-        txtViewAtaque = (TextView) view.findViewById(R.id.txtViewAtaque);
-        txtViewDefesa = (TextView) view.findViewById(R.id.txtViewDefesa);
-        txtViewPeso = (TextView) view.findViewById(R.id.txtViewPeso);
-        txtViewSpAtk = (TextView) view.findViewById(R.id.txtViewSpAtaque);
-        txtViewSpDefesa = (TextView) view.findViewById(R.id.txtViewSpDefesa);
-        final TextView txtViewVelocidade = (TextView) view.findViewById(R.id.txtViewVelocidade);
 
         lblAtaque.setVisibility(View.INVISIBLE);
         lblDefesa.setVisibility(View.INVISIBLE);
@@ -330,16 +277,39 @@ public class BuscarFragment extends Fragment {
     }
 
     public void checkFocus(){
-
         HomeActivity.editTextToolbar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                if (!hasFocus) {
                     closeKeyboard();
                 } else {
                     openKeyboard();
                 }
             }
         });
+    }
+
+    public void lerComponentesTela(){
+
+        lblDescricao = (TextView) view.findViewById(R.id.lblDescricao);
+        lblAtaque = (TextView) view.findViewById(R.id.lblAtaque);
+        lblHp = (TextView) view.findViewById(R.id.lblHp);
+        lblAtaque = (TextView) view.findViewById(R.id.lblAtaque);
+        lblDefesa = (TextView) view.findViewById(R.id.lblDefesa);
+        lblPeso = (TextView) view.findViewById(R.id.lblPeso);
+        lblSpAtk = (TextView) view.findViewById(R.id.lblSpAtk);
+        lblSpDefesa = (TextView) view.findViewById(R.id.lblSpDefesa);
+        lblVelocidade = (TextView) view.findViewById(R.id.lblVelocidade);
+        imageView = (ImageView) view.findViewById(R.id.imageView);
+
+        txtViewDescricao = (TextView) view.findViewById(R.id.txtViewDescricao);
+        txtView = (TextView) view.findViewById(R.id.txtNoPokemon);
+        txtViewHp = (TextView) view.findViewById(R.id.txtViewHp);
+        txtViewAtaque = (TextView) view.findViewById(R.id.txtViewAtaque);
+        txtViewDefesa = (TextView) view.findViewById(R.id.txtViewDefesa);
+        txtViewPeso = (TextView) view.findViewById(R.id.txtViewPeso);
+        txtViewSpAtk = (TextView) view.findViewById(R.id.txtViewSpAtaque);
+        txtViewSpDefesa = (TextView) view.findViewById(R.id.txtViewSpDefesa);
+        txtViewVelocidade = (TextView) view.findViewById(R.id.txtViewVelocidade);
     }
 }

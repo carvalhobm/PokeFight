@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.gohorse.pokefight.R;
+import com.example.gohorse.pokefight.activities.HomeActivity;
 
 public class FimJogoFragment extends Fragment {
 
@@ -75,8 +77,6 @@ public class FimJogoFragment extends Fragment {
                 .beginTransaction();
         PreJogoFragment llf = new PreJogoFragment();
         ft.replace(R.id.frameLayout, llf);
-//        ft.addToBackStack(null);
-
         ft.commit();
     }
 }
