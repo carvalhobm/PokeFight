@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.gohorse.pokefight.fragments.AboutFragment">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:minWidth="150dp"
+        android:minHeight="150dp"
+        android:src="@drawable/go_horse_inc"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2"
+        android:text="@string/logo"
+        android:textSize="25dp"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:padding="10dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/aboutDescription"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView2" />
+
+    <TextView
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/produzido"
+        android:textSize="15dp"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/textView4"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/produtor1"
+        android:textSize="15dp"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/textView5"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/produtor2"
+        android:textSize="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView5" />
+</RelativeLayout>

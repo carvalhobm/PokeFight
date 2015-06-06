@@ -20,6 +20,10 @@
     <string name="derrotas">Defeats:   </string>
     <string name="escolhagenracao">Select generation</string>
     <string name="btnJogar">Start</string>
+    <string name="aboutDescription">O PokeFight é um projeto em andamento sendo essa a primeira versão.</string>
+    <string name="produzido">Produzido por:</string>
+    <string name="produtor1">Bruno Martins de Carvalho</string>
+    <string name="produtor2">Lucas Ferreira Rodrigues</string>
 
 
 

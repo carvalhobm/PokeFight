@@ -201,21 +201,6 @@ public class PreJogoFragment extends Fragment {
         });
     }
 
-    public void setDescricao(List<Description> listaDescricoes){
-        final TextView txtViewDescricao = (TextView) view.findViewById(R.id.txtViewDescricao);
-
-        apiService.getPokemonDescription(listaDescricoes.get(0).getResourceUri().replaceFirst("/", ""), new Callback<DescriptionFinal>() {
-            @Override
-            public void success(DescriptionFinal descriptionFinal, retrofit.client.Response response) {
-                txtViewDescricao.setText(descriptionFinal.getDescription());
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("TAGsetDescricao", "FALHA");
-            }
-        });
-    }
 
     public void gerarDeck(Integer init, Integer fim, String gen){
 

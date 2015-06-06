@@ -25,6 +25,10 @@ import com.example.gohorse.pokefight.model.Sprite;
 import com.example.gohorse.pokefight.model.SpriteFinal;
 import com.squareup.picasso.Picasso;
 
+import junit.framework.Test;
+
+import org.w3c.dom.Text;
+
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
@@ -51,11 +55,19 @@ public class JogoFragment extends Fragment {
     final public MyApiInterface apiService =
             restAdapter.create(MyApiInterface.class);
 
+    public TextView txtViewNumero;
     public TextView txtViewPokemon;
     public ImageView imgViewPokemon;
     public ImageView imgViewTipo;
     public TextView txtViewTipo;
-    public TextView txtViewHp;
+    public TextView txtViewHpCard;
+    public TextView txtViewAtaqueCard;
+    public TextView txtViewDefesaCard;
+    public TextView txtViewSpAtkCard;
+    public TextView txtViewSpDefCard;
+    public TextView txtViewSpeedCard;
+    public TextView txtViewWeightCard;
+
 
     public Button btnVitoria;
     public Button btnEmpate;
@@ -78,11 +90,21 @@ public class JogoFragment extends Fragment {
         btnEmpate = (Button) view.findViewById(R.id.btnEmpate);
         btnVitoria = (Button) view.findViewById(R.id.btnVitoria);
 
-        txtViewPokemon = (TextView) view.findViewById(R.id.txtViewNome);
-        txtViewTipo = (TextView) view.findViewById(R.id.txtViewTipo);
-        txtViewHp = (TextView) view.findViewById(R.id.txtViewHp);
         imgViewPokemon = (ImageView) view.findViewById(R.id.imgViewPokemon);
         imgViewTipo = (ImageView) view.findViewById(R.id.imgViewTipo);
+
+        txtViewNumero = (TextView) view.findViewById(R.id.txtViewNumero);
+        txtViewPokemon = (TextView) view.findViewById(R.id.txtViewNome);
+        txtViewTipo = (TextView) view.findViewById(R.id.txtViewTipo);
+        txtViewHpCard = (TextView) view.findViewById(R.id.txtViewHpCard);
+        txtViewAtaqueCard = (TextView) view.findViewById(R.id.txtViewAtaqueCard);
+        txtViewDefesaCard = (TextView) view.findViewById(R.id.txtViewDefesaCard);
+        txtViewSpAtkCard = (TextView) view.findViewById(R.id.txtViewSpAtkCard);
+        txtViewSpDefCard = (TextView) view.findViewById(R.id.txtviewSpDefCard);
+        txtViewSpeedCard = (TextView) view.findViewById(R.id.txtViewSpeedCard);
+        txtViewWeightCard = (TextView) view.findViewById(R.id.txtViewWeightCard);
+
+
         i = 0;
         setCard(i);
 
@@ -136,9 +158,17 @@ public class JogoFragment extends Fragment {
 
         String tipo = PreJogoFragment.listaCards.get(i).getTypes().get(PreJogoFragment.listaCards.get(i).getTypes().size() - 1).getName().trim();
 
+        txtViewNumero.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getNationalId()).trim());
         txtViewPokemon.setText(PreJogoFragment.listaCards.get(index).getName().trim());
-        txtViewTipo.setText(tipo);
-        txtViewHp.setText(PreJogoFragment.listaCards.get(index).getHp().toString().trim());
+        txtViewTipo.setText(tipo.trim());
+        txtViewHpCard.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getHp().toString()).trim());
+        txtViewAtaqueCard.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getAttack()).trim());
+        txtViewDefesaCard.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getDefense()).trim());
+        txtViewSpAtkCard.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getSpAtk()).trim());
+        txtViewSpDefCard.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getSp_def()).trim());
+        txtViewSpeedCard.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getSpeed()).trim());
+        txtViewWeightCard.setText(String.valueOf(PreJogoFragment.listaCards.get(index).getWeight()).trim());
+
         setImg(PreJogoFragment.listaCards.get(i).getSprites());
         setImgTipo(tipo);
     }

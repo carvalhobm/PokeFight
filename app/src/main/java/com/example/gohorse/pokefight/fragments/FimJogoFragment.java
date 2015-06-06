@@ -39,15 +39,15 @@ public class FimJogoFragment extends Fragment {
 
 
         if (isVencedor()){
-            txtViewSituacao.setText("VENCEDOR!");
+            txtViewSituacao.setText("Winner!");
             txtViewVitorias.setText((JogoFragment.vitorias) + "");
             txtViewDerrotas.setText((JogoFragment.derrotas) + "");
         } else if (isEmpate()) {
-            txtViewSituacao.setText("EMPATE!");
+            txtViewSituacao.setText("Draw");
             txtViewVitorias.setText((JogoFragment.vitorias) + "");
             txtViewDerrotas.setText((JogoFragment.derrotas) + "");
         } else {
-            txtViewSituacao.setText("PERDEDOR!");
+            txtViewSituacao.setText("Loser!");
             txtViewVitorias.setText((JogoFragment.vitorias) + "");
             txtViewDerrotas.setText((JogoFragment.derrotas) + "");
         }

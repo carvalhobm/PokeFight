@@ -8,10 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,54 +20,41 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.example.gohorse.pokefight.R;
+import com.example.gohorse.pokefight.fragments.AboutFragment;
 import com.example.gohorse.pokefight.fragments.BuscarFragment;
 import com.example.gohorse.pokefight.fragments.BuscarInitFragment;
 import com.example.gohorse.pokefight.fragments.PreJogoFragment;
-import com.example.gohorse.pokefight.model.Person;
-
-import java.util.List;
 
 public class HomeActivity extends ActionBarActivity {
-////////////////////////////////////////////////
 
     public static ProgressDialog progressDialog;
     public static ProgressDialog progressDialogSalvandoBd;
 
-
-
-    ///////////////////////////////////////
     private InputMethodManager imm;
 
-    //----Layouts---------------------------------------------------------------------------------------
     public static RelativeLayout relativeLayoutToolbar;
     public DrawerLayout mDrawerLayout;
-//--------------------------------------------------------------------------------------------------
 
     public ActionBarDrawerToggle mDrawerToggle;
     public Toolbar toolbar;
     public Button btnInicio;
     public Button btnJogar;
     public Button btnBuscar;
-    public Button btnConfiguracoes;
+    public Button btnSobre;
     public Button btnSair;
     public static RecyclerView rv;
     public static EditText editTextToolbar;
     public static View view;
     public FrameLayout fl;
 
-    //----Fragments-------------------------------------------------------------------------------------
-    private BuscarFragment buscarFragment = new BuscarFragment();
-    private PreJogoFragment preJogoFragment = new PreJogoFragment();
     private BuscarInitFragment buscarInitFragment = new BuscarInitFragment();
+    private PreJogoFragment preJogoFragment = new PreJogoFragment();
+    private BuscarFragment buscarFragment = new BuscarFragment();
+    private AboutFragment aboutFragment = new AboutFragment();
 
     private FragmentTransaction fragmentTransaction;
 
-//--------------------------------------------------------------------------------------------------
-
     public static SharedPreferences sharedPreferences;
-    private List<Person> persons;
-    private LayoutInflater inflater;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +69,7 @@ public class HomeActivity extends ActionBarActivity {
         progressDialogSalvandoBd = new ProgressDialog(this);
         progressDialogSalvandoBd.setMessage("Creating base for pokemon...");
         progressDialogSalvandoBd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialogSalvandoBd.show();
 
         sharedPreferences = getSharedPreferences("Generation", Context.MODE_PRIVATE);
 
@@ -92,7 +78,7 @@ public class HomeActivity extends ActionBarActivity {
         btnInicio = (Button) findViewById(R.id.btnInicio);
         btnJogar = (Button) findViewById(R.id.btnJogarMenuLateral);
         btnBuscar = (Button) findViewById(R.id.btnBuscarMenuLateral);
-        btnConfiguracoes = (Button) findViewById(R.id.btnConfiguracoesMenuLateral);
+        btnSobre = (Button) findViewById(R.id.btnSobreMenuLateral);
         btnSair = (Button) findViewById(R.id.btnSair);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -146,15 +132,19 @@ public class HomeActivity extends ActionBarActivity {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                relativeLayoutToolbar.setVisibility(View.GONE);
                 getTelaBuscar();
                 mDrawerLayout.closeDrawers();
+                closeKeyboard();
             }
         });
 
-        btnConfiguracoes.setOnClickListener(new View.OnClickListener() {
+        btnSobre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 relativeLayoutToolbar.setVisibility(View.GONE);
+                getTelaAbout();
+                mDrawerLayout.closeDrawers();
                 closeKeyboard();
             }
         });
@@ -212,6 +202,13 @@ public class HomeActivity extends ActionBarActivity {
         buscarFragment = new BuscarFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout, buscarFragment, "buscar");
+        fragmentTransaction.commit();
+    }
+
+    public void getTelaAbout(){
+        buscarFragment = new BuscarFragment();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, aboutFragment, "sobre");
         fragmentTransaction.commit();
     }
 
