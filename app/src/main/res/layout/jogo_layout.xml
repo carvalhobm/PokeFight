@@ -13,6 +13,13 @@
             android:background="@drawable/card"
             >
 
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/txtViewNumero"
+                android:layout_above="@+id/imgViewPokemon"
+                android:layout_alignRight="@+id/imgViewTipo"
+                android:layout_alignEnd="@+id/imgViewTipo" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,36 +48,174 @@
                 android:minWidth="50dp"
                 android:minHeight="34dp"
                 android:layout_below="@+id/imgViewPokemon"
-                android:layout_toLeftOf="@+id/txtViewTipo"
-                android:layout_toStartOf="@+id/txtViewTipo" />
+                android:layout_toLeftOf="@+id/txtViewNome"
+                android:layout_toStartOf="@+id/txtViewNome" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="laga laga"
                 android:id="@+id/txtViewTipo"
-                android:textSize="30dp"
+                android:textSize="28dp"
                 android:layout_below="@+id/imgViewPokemon"
-                android:layout_centerHorizontal="true"
-                android:layout_alignBottom="@+id/imgViewTipo" />
+                android:layout_toRightOf="@+id/imgViewTipo"
+                android:layout_toEndOf="@+id/imgViewTipo" />
 
             <TextView
+                android:padding="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hp:"
+                android:textSize="15dp"
                 android:id="@+id/lblHp"
                 android:layout_marginTop="33dp"
-                android:layout_below="@+id/txtViewTipo"
+                android:layout_below="@+id/imgViewTipo"
                 android:layout_toLeftOf="@+id/txtViewTipo"
                 android:layout_toStartOf="@+id/txtViewTipo" />
 
             <TextView
+                android:padding="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30"
-                android:id="@+id/txtViewHp"
+                android:textSize="15dp"
+                android:id="@+id/txtViewHpCard"
                 android:layout_alignTop="@+id/lblHp"
-                android:layout_centerHorizontal="true" />
+                android:layout_toRightOf="@+id/lblHp"
+                android:layout_toEndOf="@+id/lblHp" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ataque: "
+                android:textSize="15dp"
+                android:layout_below="@+id/lblHp"
+                android:layout_alignLeft="@+id/lblHp"
+                android:layout_alignStart="@+id/lblHp"
+                android:id="@+id/lblAtaqueCarta" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31"
+                android:textSize="15dp"
+                android:id="@+id/txtViewAtaqueCard"
+                android:layout_alignTop="@+id/lblAtaqueCarta"
+                android:layout_toRightOf="@+id/lblPesoCarta"
+                android:layout_toEndOf="@+id/lblPesoCarta" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Defesa: "
+                android:textSize="15dp"
+                android:id="@+id/lblDefesaCarta"
+                android:layout_below="@+id/lblAtaqueCarta"
+                android:layout_alignLeft="@+id/lblHp"
+                android:layout_alignStart="@+id/lblHp" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31"
+                android:textSize="15dp"
+                android:id="@+id/txtViewDefesaCard"
+                android:layout_below="@+id/lblAtaqueCarta"
+                android:layout_toRightOf="@+id/lblPesoCarta"
+                android:layout_toEndOf="@+id/lblPesoCarta" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sp atk: "
+                android:textSize="15dp"
+                android:id="@+id/lblSpAtkCarta"
+                android:layout_below="@+id/lblDefesaCarta"
+                android:layout_alignLeft="@+id/lblHp"
+                android:layout_alignStart="@+id/lblHp" />
+
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sp def: "
+                android:textSize="15dp"
+                android:id="@+id/lblSpDefCarta"
+                android:layout_below="@+id/lblSpAtkCarta"
+                android:layout_alignLeft="@+id/lblHp"
+                android:layout_alignStart="@+id/lblHp" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed: "
+                android:textSize="15dp"
+                android:id="@+id/lblVelocidadeCarta"
+                android:layout_below="@+id/lblSpDefCarta"
+                android:layout_alignLeft="@+id/lblHp"
+                android:layout_alignStart="@+id/lblHp" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight: "
+                android:textSize="15dp"
+                android:id="@+id/lblPesoCarta"
+                android:layout_below="@+id/lblVelocidadeCarta"
+                android:layout_alignLeft="@+id/lblHp"
+                android:layout_alignStart="@+id/lblHp" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31"
+                android:textSize="15dp"
+                android:id="@+id/txtViewSpAtkCard"
+                android:layout_alignTop="@+id/lblSpAtkCarta"
+                android:layout_alignLeft="@+id/txtviewSpDefCard"
+                android:layout_alignStart="@+id/txtviewSpDefCard" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31"
+                android:textSize="15dp"
+                android:id="@+id/txtviewSpDefCard"
+                android:layout_above="@+id/lblVelocidadeCarta"
+                android:layout_toRightOf="@+id/lblVelocidadeCarta"
+                android:layout_toEndOf="@+id/lblVelocidadeCarta" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31"
+                android:textSize="15dp"
+                android:id="@+id/txtViewSpeedCard"
+                android:layout_above="@+id/lblPesoCarta"
+                android:layout_toRightOf="@+id/lblVelocidadeCarta"
+                android:layout_toEndOf="@+id/lblVelocidadeCarta" />
+
+            <TextView
+                android:padding="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31"
+                android:textSize="15dp"
+                android:id="@+id/txtViewWeightCard"
+                android:layout_below="@+id/txtViewSpeedCard"
+                android:layout_alignLeft="@+id/txtViewDefesaCard"
+                android:layout_alignStart="@+id/txtViewDefesaCard" />
 
         </RelativeLayout>
 
