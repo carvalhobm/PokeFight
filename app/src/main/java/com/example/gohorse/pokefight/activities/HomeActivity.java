@@ -33,6 +33,7 @@ public class HomeActivity extends ActionBarActivity {
 ////////////////////////////////////////////////
 
     public static ProgressDialog progressDialog;
+    public static ProgressDialog progressDialogSalvandoBd;
 
 
 
@@ -79,6 +80,10 @@ public class HomeActivity extends ActionBarActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+        progressDialogSalvandoBd = new ProgressDialog(this);
+        progressDialogSalvandoBd.setMessage("Creating base for pokemon...");
+        progressDialogSalvandoBd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         sharedPreferences = getSharedPreferences("Generation", Context.MODE_PRIVATE);
 

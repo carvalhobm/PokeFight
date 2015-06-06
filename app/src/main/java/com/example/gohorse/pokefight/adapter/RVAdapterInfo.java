@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.gohorse.pokefight.R;
 
+import org.w3c.dom.Text;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -37,8 +39,9 @@ public class RVAdapterInfo extends RecyclerView.Adapter<RVAdapterInfo.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Information current = data.get(position);
-        holder.title.setText(current.title);
-
+        holder.index.setText(String.valueOf(current.getIndex()));
+        holder.nome.setText(current.getNome());
+        holder.tipo.setText(current.getTipo());
     }
 
     @Override
@@ -48,12 +51,16 @@ public class RVAdapterInfo extends RecyclerView.Adapter<RVAdapterInfo.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
+        TextView index;
+        TextView nome;
+        TextView tipo;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            title = (TextView) itemView.findViewById(R.id.txtViewCustom);
+            index = (TextView) itemView.findViewById(R.id.txtViewIndex);
+            nome = (TextView) itemView.findViewById(R.id.txtViewNomeCard);
+            tipo = (TextView) itemView.findViewById(R.id.txtViewTipoCard);
         }
     }
 

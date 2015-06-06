@@ -7,7 +7,22 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="logo">goHorse Inc.</string>
-    <string name="buscar">buscar</string>
+    <string name="incio">Home</string>
+    <string name="jogar">Play</string>
+    <string name="buscar">Search</string>
+    <string name="sobre">About</string>
+    <string name="sair">Leave</string>
+    <string name="btnVitoria">Win</string>
+    <string name="btnEmpate">Draw</string>
+    <string name="btnDerrota">Lose</string>
+    <string name="novoJogo">New Game</string>
+    <string name="vitorias">Victories: </string>
+    <string name="derrotas">Defeats:   </string>
+    <string name="escolhagenracao">Select generation</string>
+    <string name="btnJogar">Start</string>
+
+
+
     <string name="title_activity_pre_jogo_fragment">PreJogoFragment</string>
 
 <!-- TODO: Remove or change this placeholder text -->

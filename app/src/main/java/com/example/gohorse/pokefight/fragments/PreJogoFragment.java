@@ -157,31 +157,31 @@ public class PreJogoFragment extends Fragment {
         });
         return view;
     }
-
-    public void random() {
-
-        Random rand = new Random();
-        Integer index = rand.nextInt(718) + 1;
-
-        apiService.getPokemon(index.toString(), new Callback<Pokemon>() {
-            @Override
-            public void success(Pokemon pokemon, retrofit.client.Response response) {
-
-                List<Sprite> sprites = pokemon.getSprites();
-                List<Description> descriptions = pokemon.getDescriptions();
-
-                setImg(sprites);
-                setDescricao(descriptions);
-
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                String[] erro = error.getMessage().toString().split(":");
-
-            }
-        });
-    }
+//
+//    public void random() {
+//
+//        Random rand = new Random();
+//        Integer index = rand.nextInt(718) + 1;
+//
+//        apiService.getPokemon(index.toString(), new Callback<Pokemon>() {
+//            @Override
+//            public void success(Pokemon pokemon, retrofit.client.Response response) {
+//
+//                List<Sprite> sprites = pokemon.getSprites();
+//                List<Description> descriptions = pokemon.getDescriptions();
+//
+//                setImg(sprites);
+//                setDescricao(descriptions);
+//
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//                String[] erro = error.getMessage().toString().split(":");
+//
+//            }
+//        });
+//    }
 
     public void setImg(List<Sprite> sprites){
         final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);

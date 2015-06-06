@@ -77,7 +77,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vitoria"
+            android:text="@string/btnVitoria"
             android:id="@+id/btnVitoria"
             android:minWidth="100dp"
             android:maxWidth="100dp"
@@ -89,7 +89,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Derrota"
+            android:text="@string/btnDerrota"
             android:id="@+id/btnDerrota"
             android:minWidth="100dp"
             android:maxWidth="100dp"
@@ -101,7 +101,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Empate"
+            android:text="@string/btnEmpate"
             android:id="@+id/btnEmpate"
             android:layout_below="@+id/rel"
             android:layout_centerHorizontal="true"

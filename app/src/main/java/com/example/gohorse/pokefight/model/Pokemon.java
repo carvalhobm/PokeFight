@@ -30,7 +30,7 @@ public class Pokemon {
     private String modified;
     private List<Move> moves = new ArrayList<Move>();
     private String name;
-    private Integer nationalId;
+    private Integer national_id;
     private Integer pkdxId;
     private String resourceUri;
     private Integer sp_atk;
@@ -486,7 +486,7 @@ public class Pokemon {
      * The nationalId
      */
     public Integer getNationalId() {
-        return nationalId;
+        return national_id;
     }
 
     /**
@@ -495,11 +495,11 @@ public class Pokemon {
      * The national_id
      */
     public void setNationalId(Integer nationalId) {
-        this.nationalId = nationalId;
+        this.national_id = nationalId;
     }
 
     public Pokemon withNationalId(Integer nationalId) {
-        this.nationalId = nationalId;
+        this.national_id = nationalId;
         return this;
     }
 
