@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="action_bar" type="color">#F44336</item>
+    <item name="status_bar" type="color">#D32F2F</item>
+
+
+    <integer-array name="androidcolors">
+        <item>@color/action_bar</item>
+        <item>@color/status_bar</item>
+    </integer-array>
+
+</resources> 

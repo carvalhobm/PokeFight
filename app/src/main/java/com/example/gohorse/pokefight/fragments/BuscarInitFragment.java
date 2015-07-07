@@ -16,6 +16,7 @@ import com.example.gohorse.pokefight.adapter.RVAdapterInfo;
 import com.example.gohorse.pokefight.interfaces.MyApiInterface;
 import com.example.gohorse.pokefight.model.Pokemon;
 import com.example.gohorse.pokefight.utils.DataHelper;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 
@@ -66,6 +67,10 @@ public class BuscarInitFragment extends Fragment {
         rvAdapterInfo = new RVAdapterInfo(getActivity(), getData());
         recyclerView.setAdapter(rvAdapterInfo);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView.addItemDecoration(new HorizontalDividerItemDecoration
+//                                          .Builder(getActivity()
+//                                          .getApplicationContext())
+//                                          .build());
 
         HomeActivity.progressDialogSalvandoBd.hide();
 
