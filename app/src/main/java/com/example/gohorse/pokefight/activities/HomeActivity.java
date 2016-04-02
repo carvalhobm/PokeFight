@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.example.gohorse.pokefight.R;
 import com.example.gohorse.pokefight.fragments.AboutFragment;
 import com.example.gohorse.pokefight.fragments.BuscarFragment;
 import com.example.gohorse.pokefight.fragments.BuscarInitFragment;
+import com.example.gohorse.pokefight.fragments.CameraFragment;
 import com.example.gohorse.pokefight.fragments.PreJogoFragment;
 
 public class HomeActivity extends ActionBarActivity {
@@ -47,6 +49,7 @@ public class HomeActivity extends ActionBarActivity {
     public Button btnBuscar;
     public Button btnSobre;
     public Button btnSair;
+    public Button btnCamera;
     public static RecyclerView rv;
     public static EditText editTextToolbar;
     public static View view;
@@ -56,6 +59,7 @@ public class HomeActivity extends ActionBarActivity {
     private PreJogoFragment preJogoFragment = new PreJogoFragment();
     private BuscarFragment buscarFragment = new BuscarFragment();
     private AboutFragment aboutFragment = new AboutFragment();
+    private CameraFragment cameraFragment = new CameraFragment();
 
     private FragmentTransaction fragmentTransaction;
 
@@ -88,6 +92,7 @@ public class HomeActivity extends ActionBarActivity {
         btnBuscar = (Button) findViewById(R.id.btnBuscarMenuLateral);
         btnSobre = (Button) findViewById(R.id.btnSobreMenuLateral);
         btnSair = (Button) findViewById(R.id.btnSair);
+        btnCamera = (Button) findViewById(R.id.btnCamera);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         relativeLayoutToolbar = (RelativeLayout) findViewById(R.id.relativeLayoutToolbar);
@@ -164,6 +169,16 @@ public class HomeActivity extends ActionBarActivity {
             }
         });
 
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayoutToolbar.setVisibility(View.GONE);
+                getTelaCamera();
+                mDrawerLayout.closeDrawers();
+                closeKeyboard();
+            }
+        });
+
         getTelaInit();
     }
 
@@ -217,6 +232,13 @@ public class HomeActivity extends ActionBarActivity {
         buscarFragment = new BuscarFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout, aboutFragment, "sobre");
+        fragmentTransaction.commit();
+    }
+
+    public void getTelaCamera(){
+        cameraFragment = new CameraFragment();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, cameraFragment, "camera");
         fragmentTransaction.commit();
     }
 
