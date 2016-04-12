@@ -46,8 +46,14 @@ public class CameraFragment extends Fragment implements View.OnClickListener  {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Bitmap bp = (Bitmap) data.getExtras().get("data");
-        iv.setImageBitmap(bp);
+        try {
+            Bitmap bp = (Bitmap) data.getExtras().get("data");
+
+            iv.setImageBitmap(bp);
+
+        } catch (NullPointerException e){
+            e.getMessage();
+        }
 
     }
 
