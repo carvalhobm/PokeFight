@@ -1,3 +1,3 @@
 # PokeFight
-Repositorio do PokeFuckingFight
+Repositorio do PokeFight
 
